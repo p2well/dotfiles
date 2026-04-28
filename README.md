@@ -8,6 +8,7 @@ My dotfiles in order to make me feel at `$home` in no time.
 dotfiles/
 ├── copilot/
 │   ├── agents/          # Custom GitHub Copilot agents (.agent.md)
+│   ├── instructions/    # Coding standards (.instructions.md)
 │   └── skills/          # Agent skills (folders with SKILL.md)
 ├── install.ps1          # Symlink setup script
 └── README.md
@@ -28,6 +29,7 @@ This creates the following links:
 | Source | Target |
 |--------|--------|
 | `copilot/agents/` | `~/.copilot/agents/` |
+| `copilot/instructions/` | `~/.copilot/instructions/` |
 | `copilot/skills/` | `~/.copilot/skills/` |
 
 Restart VS Code after running the script.
