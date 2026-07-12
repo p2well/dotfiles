@@ -58,6 +58,11 @@ If a reviewer requests changes on a PR the agent created, the agent MUST:
 
 - PRs must be reviewed before merge.
 
+#### PR body / markdown formatting
+
+- **Do not hard-wrap PR or markdown body text.** Write each paragraph and list item as a single line so it flows to the full width of the GitHub description pane. Do not insert manual line breaks at ~80 columns — rely on the renderer's soft wrapping.
+- **Prefer proper Unicode arrows (`→`) over ASCII (`->`)** in PR and markdown body text.
+
 #### PR body formatting (PowerShell)
 
 PowerShell treats backticks (`` ` ``), dollar signs (`$`), and curly braces in double-quoted strings as special characters. This causes garbled PR descriptions when using inline `--body` arguments with `gh pr create` or `gh pr edit`.
