@@ -20,9 +20,9 @@ $ErrorActionPreference = "Stop"
 $dotfilesRoot = $PSScriptRoot
 
 $links = @(
-    @{ Target = "$dotfilesRoot\copilot\agents"; Link = "$HOME\.copilot\agents" }
-    @{ Target = "$dotfilesRoot\copilot\instructions"; Link = "$HOME\.copilot\instructions" }
-    @{ Target = "$dotfilesRoot\copilot\skills"; Link = "$HOME\.copilot\skills" }
+    @{ Target = "$dotfilesRoot\.agents\skills";       Link = "$HOME\.copilot\skills" }
+    @{ Target = "$dotfilesRoot\.github\agents";       Link = "$HOME\.copilot\agents" }
+    @{ Target = "$dotfilesRoot\.github\instructions"; Link = "$HOME\.copilot\instructions" }
 )
 
 foreach ($entry in $links) {
