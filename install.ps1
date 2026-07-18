@@ -6,6 +6,9 @@
     Creates directory junctions so that tools like VS Code / GitHub Copilot
     pick up agents and skills from this version-controlled repo.
 
+    Also restores project-level skills managed by the npx skills CLI from
+    skills-lock.json (requires Node.js / npx to be available).
+
     Run this script once after cloning the repo on a new machine.
 
 .EXAMPLE
@@ -44,6 +47,27 @@ foreach ($entry in $links) {
 
     New-Item -ItemType Junction -Path $link -Target $target | Out-Null
     Write-Host "  Linked: $link -> $target"
+}
+
+
+# Restore project-level skills from skills-lock.json
+$lockFile = Join-Path $dotfilesRoot "skills-lock.json"
+if (Test-Path $lockFile) {
+    if (Get-Command npx -ErrorAction SilentlyContinue) {
+        Write-Host "`nRestoring project skills from skills-lock.json..."
+        Push-Location $dotfilesRoot
+        try {
+            npx skills experimental_install --yes
+            Write-Host "  Skills restored."
+        } catch {
+            Write-Warning "  Failed to restore skills: $_"
+            Write-Warning "  Run 'npx skills experimental_install' manually after install."
+        } finally {
+            Pop-Location
+        }
+    } else {
+        Write-Warning "  npx not found — skipping skill restore. Install Node.js and run 'npx skills experimental_install' manually."
+    }
 }
 
 Write-Host "`nDone. Restart VS Code to pick up changes."
