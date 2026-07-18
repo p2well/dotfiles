@@ -69,18 +69,18 @@ PowerShell treats backticks (`` ` ``), dollar signs (`$`), and curly braces in d
 
 > **Note:** This is a PowerShell-specific quoting issue. On other shells (e.g. bash/zsh with here-docs or single quotes) inline `--body` may be fine — apply this rule when working in PowerShell.
 
-**Always use `--body-file` instead of `--body`:**
+**Always write the PR body using a single-quoted here-string (`@'...'@`) assigned to a variable, then pipe it to `Out-File` and pass it via `--body-file`. Never use `@"..."@` — PowerShell still processes backticks and `$` inside double-quoted here-strings.**
 
 ```powershell
 # Write the PR body to a temporary file first
-$prBody = @"
+$prBody = @'
 ## Summary
 
 Description with `code`, {placeholders}, and $variables rendered correctly.
-"@
+'@
 $prBody | Out-File -FilePath pr-body.tmp -Encoding utf8
 gh pr create --title "docs: my change" --body-file pr-body.tmp --base main
 Remove-Item pr-body.tmp
 ```
 
-**Agents MUST NOT** pass PR descriptions inline via `--body "..."` in PowerShell — always write to a temp file and use `--body-file`.
+**Agents MUST NOT** pass PR descriptions inline via `--body "..."` in PowerShell — always write to a temp file with a single-quoted here-string and use `--body-file`.
