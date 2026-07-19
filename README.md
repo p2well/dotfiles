@@ -11,6 +11,9 @@ dotfiles/
 ├── .github/
 │   ├── agents/          # Custom GitHub Copilot agents (.agent.md)
 │   └── instructions/    # Coding standards (.instructions.md)
+├── shell/
+│   ├── aliases.ps1      # PowerShell aliases (dot-source from $PROFILE)
+│   └── aliases.sh       # Bash/Zsh aliases (source from ~/.bashrc or ~/.zshrc)
 ├── install.ps1          # Symlink setup + skill restore script
 ├── skills-lock.json     # npx skills lockfile (like package-lock.json)
 └── README.md
@@ -36,3 +39,27 @@ This creates the following links and restores project skills:
 | `skills-lock.json` | restores `.agents/skills/` via `npx skills experimental_install` |
 
 Restart VS Code after running the script.
+
+## Shell aliases
+
+The `shell/` directory contains alias definitions for common commands.
+
+| Alias | Expands to |
+|-------|-----------|
+| `ghcp` | `copilot` |
+
+### PowerShell
+
+Dot-source `shell/aliases.ps1` from your `$PROFILE`:
+
+```powershell
+. ~/dev/dotfiles/shell/aliases.ps1
+```
+
+### Bash / Zsh
+
+Source `shell/aliases.sh` from your `~/.bashrc` or `~/.zshrc`:
+
+```bash
+source ~/dev/dotfiles/shell/aliases.sh
+```
