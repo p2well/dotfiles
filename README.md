@@ -48,8 +48,12 @@ The `shell/` directory contains alias definitions for common commands.
 |-------|-----------|
 | `ghcp` | `copilot` |
 
-`install.ps1` automatically adds `shell/aliases.ps1` to your PowerShell `$PROFILE`. For bash/zsh, source `shell/aliases.sh` from your `~/.bashrc` or `~/.zshrc`:
+Both scripts auto-install themselves when run directly — no manual profile editing needed.
+
+**PowerShell** — handled automatically by `install.ps1` (adds dot-source line to `$PROFILE`).
+
+**Bash / Zsh** — run the script once to add the source line to `~/.bashrc` and `~/.zshrc`:
 
 ```bash
-source ~/dev/dotfiles/shell/aliases.sh
+bash ~/dev/dotfiles/shell/aliases.sh
 ```
