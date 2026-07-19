@@ -48,17 +48,7 @@ The `shell/` directory contains alias definitions for common commands.
 |-------|-----------|
 | `ghcp` | `copilot` |
 
-### PowerShell
-
-Dot-source `shell/aliases.ps1` from your `$PROFILE`:
-
-```powershell
-. ~/dev/dotfiles/shell/aliases.ps1
-```
-
-### Bash / Zsh
-
-Source `shell/aliases.sh` from your `~/.bashrc` or `~/.zshrc`:
+`install.ps1` automatically adds `shell/aliases.ps1` to your PowerShell `$PROFILE`. For bash/zsh, source `shell/aliases.sh` from your `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 source ~/dev/dotfiles/shell/aliases.sh

@@ -70,4 +70,26 @@ if (Test-Path $lockFile) {
     }
 }
 
+# Add shell aliases to PowerShell profile
+$aliasesScript = "$dotfilesRoot\shell\aliases.ps1"
+$sourceLine = ". `"$aliasesScript`""
+
+if (Test-Path $aliasesScript) {
+    Write-Host "`nConfiguring PowerShell profile..."
+
+    if (!(Test-Path $PROFILE)) {
+        New-Item -ItemType File -Path $PROFILE -Force | Out-Null
+        Write-Host "  Created profile: $PROFILE"
+    }
+
+    $profileContent = Get-Content $PROFILE -Raw -ErrorAction SilentlyContinue
+    if ($profileContent -notlike "*aliases.ps1*") {
+        Add-Content -Path $PROFILE -Value "`n$sourceLine"
+        Write-Host "  Added shell aliases to: $PROFILE"
+        Write-Host "  Run '. `$PROFILE' or open a new terminal to apply."
+    } else {
+        Write-Host "  Shell aliases already present in profile — skipping."
+    }
+}
+
 Write-Host "`nDone. Restart VS Code to pick up changes."
