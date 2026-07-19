@@ -12,24 +12,33 @@ dotfiles/
 │   ├── agents/          # Custom GitHub Copilot agents (.agent.md)
 │   └── instructions/    # Coding standards (.instructions.md)
 ├── shell/
-│   ├── aliases.ps1      # PowerShell aliases (dot-source from $PROFILE)
-│   └── aliases.sh       # Bash/Zsh aliases (source from ~/.bashrc or ~/.zshrc)
-├── install.ps1          # Symlink setup + skill restore script
+│   ├── aliases.ps1      # PowerShell aliases (self-installing)
+│   └── aliases.sh       # Bash/Zsh aliases (self-installing)
+├── install.ps1          # Windows setup: symlinks + skills + shell aliases
+├── install.sh           # Linux/macOS setup: symlinks + skills + shell aliases
 ├── skills-lock.json     # npx skills lockfile (like package-lock.json)
 └── README.md
 ```
 
 ## Setup
 
-Clone the repo and run the install script to create symlinks:
+Clone the repo and run the install script for your platform:
 
+**Windows (PowerShell)**
 ```powershell
 git clone https://github.com/p2well/dotfiles.git ~/dev/dotfiles
 cd ~/dev/dotfiles
 .\install.ps1
 ```
 
-This creates the following links and restores project skills:
+**Linux / macOS (bash)**
+```bash
+git clone https://github.com/p2well/dotfiles.git ~/dev/dotfiles
+cd ~/dev/dotfiles
+bash install.sh
+```
+
+Both scripts create the following links, restore project skills, and install shell aliases:
 
 | Source | Target |
 |--------|--------|
@@ -48,14 +57,8 @@ The `shell/` directory contains alias definitions for common commands.
 |-------|-----------|
 | `ghcp` | `copilot` |
 
-Both scripts auto-install into the shell profile when run directly — no manual profile editing needed. Re-running is safe (idempotent).
+The install scripts handle this automatically. To install aliases standalone, run the script for your shell directly — it is idempotent:
 
-**PowerShell** — run once (also called automatically by `install.ps1`):
-```powershell
-.\shell\aliases.ps1
-```
+**PowerShell:** `.\shell\aliases.ps1`
 
-**Bash / Zsh** — run once:
-```bash
-bash ~/dev/dotfiles/shell/aliases.sh
-```
+**Bash / Zsh:** `bash ~/dev/dotfiles/shell/aliases.sh`
