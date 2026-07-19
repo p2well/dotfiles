@@ -70,4 +70,11 @@ if (Test-Path $lockFile) {
     }
 }
 
+# Add shell aliases to PowerShell profile
+$aliasesScript = "$dotfilesRoot\shell\aliases.ps1"
+if (Test-Path $aliasesScript) {
+    Write-Host "`nConfiguring PowerShell profile..."
+    & $aliasesScript
+}
+
 Write-Host "`nDone. Restart VS Code to pick up changes."
